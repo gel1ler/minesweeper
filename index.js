@@ -51,6 +51,8 @@ const start = () => {
         let newDiv = document.createElement("button")
         newDiv.className = "cell"
         newDiv.id = "c"+i
+        newDiv.dataset.isBomb=false
+        newDiv.dataset.bombsAround = 0
         grid.appendChild(newDiv)
     }
     const game = () => {
@@ -63,9 +65,61 @@ const start = () => {
             bombs.push(rand) 
         }
         bombs = bombs.map(x=>document.querySelector(`#c${x}`))
-        console.log(bombs)
         let cell = document.querySelectorAll(".cell")
-
+        for(let i = 0;i<bombs.length;i++){
+            bombs[i].dataset.isBomb=true
+        }
+        console.log(bombs)
+        for(let i = 0;i<100;i++){
+            if(cell[i-11] != undefined){
+                if(cell[i-11].dataset.isBomb == "true"){
+                    cell[i].dataset.bombsAround++
+                    console.log(1)
+                }
+            }
+            if(cell[i-10] != undefined){
+                if(cell[i-10].dataset.isBomb == "true"){
+                    cell[i].dataset.bombsAround++
+                    console.log(1)
+                }
+            }
+            if(cell[i-9] != undefined){
+                if(cell[i-9].dataset.isBomb == "true"){
+                    cell[i].dataset.bombsAround++
+                    console.log(1)
+                }
+            }
+            if(cell[i-1] != undefined){
+                if(cell[i-1].dataset.isBomb == "true"){
+                    cell[i].dataset.bombsAround++
+                    console.log(1)
+                }
+            }
+            if(cell[i+1] != undefined){
+                if(cell[i+1].dataset.isBomb == "true"){
+                    cell[i].dataset.bombsAround++
+                    console.log(1)
+                }
+            }
+            if(cell[i+9] != undefined){
+                if(cell[i+9].dataset.isBomb == "true"){
+                    cell[i].dataset.bombsAround++
+                    console.log(1)
+                }
+            }
+            if(cell[i+10] != undefined){
+                if(cell[i+10].dataset.isBomb == "true"){
+                    cell[i].dataset.bombsAround++
+                    console.log(1)
+                }
+            }
+            if(cell[i+11] != undefined){
+                if(cell[i+11].dataset.isBomb == "true"){
+                    cell[i].dataset.bombsAround++
+                    console.log(1)
+                }
+            }
+        }
         for (let i = 0; i < 100; i++) {
             cell[i].onclick = () => {
                 cell[i].disabled = true
@@ -76,7 +130,10 @@ const start = () => {
             const bomb = bombs[i]
             bomb.onclick = ()=>{
                 bomb.style.background = "red"
-                document.querySelectorAll(".cell").disabled = true
+                clearInterval(timerId)
+                for(let i = 0;i<100;i++){
+                    document.getElementById(`c${i}`).disabled = true;
+                }
             }
         }
     }
