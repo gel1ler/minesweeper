@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="leftside_menu" onmouseover=leftsideSlideOver() onmouseout=leftsideSlideOut()>
+        <div class="settings">
+            <h2>Number of bombs</h2>
+            <input type="range" value=1 min=1 max=99 id="range" oninput=numberOfBombs()>
+        </div>
+        <img class="settings_img" src="./img/settings.png">
+    </div>
+    <div class="ground">
+        <div class="back">
+            <div class="blocks">
+                <div class="main_nav">
+                    <div class="bombs_count">
+                        <h1>1</h1>
+                    </div>
+                    <div class="again"><img src="./img/smile.png" onclick=start()></div>
+                    <div id="timer">
+                        <h1>0</h1>
+                    </div>
+                </div>
+                <div class="main_grid">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="start">
+        <button class="start_button" onclick=start()>
+            <h1>START</h1>
+        </button>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>
